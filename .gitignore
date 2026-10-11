@@ -53,6 +53,10 @@ proj.android/**/*.ap_
 proj.android/**/output.json
 proj.android/captures/
 
+# release 签名 keystore（泄露可被用于伪造同签名应用）
+*.keystore
+*.jks
+
 # ------------------------------------------------------------
 # 4. iOS / Mac 工程编译产物 (proj.ios_mac)
 # ------------------------------------------------------------
