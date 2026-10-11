@@ -1,0 +1,116 @@
+# ============================================================
+# AircraftWar (cocos2d-x 3.17.2) Git Ignore Rules
+# 方案 A：保留引擎源码 + external 依赖，忽略所有编译产物
+# ============================================================
+
+# ------------------------------------------------------------
+# 1. cocos2d-x 引擎内嵌的编译产物
+# ------------------------------------------------------------
+
+# 引擎源码目录内的 Win32 编译输出（cocos/2d 等）
+**/Debug.win32/
+**/Release.win32/
+
+# 引擎 Android 库模块的编译输出
+cocos2d/cocos/platform/android/libcocos2dx/build/
+
+# 引擎生成的临时文件
+cocos2d/cocos/**/*.obj
+cocos2d/cocos/**/*.pdb
+cocos2d/cocos/**/*.tlog
+
+# ------------------------------------------------------------
+# 2. Win32 工程编译产物 (proj.win32)
+# ------------------------------------------------------------
+proj.win32/.vs/
+proj.win32/Debug.win32/
+proj.win32/Release.win32/
+proj.win32/*.user
+proj.win32/*.suo
+proj.win32/*.VC.db
+proj.win32/*.ipch
+proj.win32/*.aps
+
+# ------------------------------------------------------------
+# 3. Android 工程编译产物 (proj.android)
+# ------------------------------------------------------------
+proj.android/.gradle/
+proj.android/local.properties
+proj.android/.idea/
+proj.android/app/build/
+proj.android/app/.externalNativeBuild/
+proj.android/app/release/
+proj.android/**/*.apk
+proj.android/**/*.ap_
+proj.android/**/output.json
+proj.android/captures/
+
+# ------------------------------------------------------------
+# 4. iOS / Mac 工程编译产物 (proj.ios_mac)
+# ------------------------------------------------------------
+proj.ios_mac/build/
+proj.ios_mac/DerivedData/
+proj.ios_mac/**/xcuserdata/
+proj.ios_mac/**/*.xcuserstate
+proj.ios_mac/**/*.moved-aside
+*.xccheckout
+
+# ------------------------------------------------------------
+# 5. 构建输出根目录
+# ------------------------------------------------------------
+bin/
+
+# ------------------------------------------------------------
+# 6. 通用编译中间文件（不影响 external/prebuilt 下的预编译库）
+# ------------------------------------------------------------
+*.o
+*.obj
+*.idb
+*.iobj
+*.ipdb
+*.pdb
+*.tlog
+*.lastbuildstate
+*.exp
+*.ilk
+*.recipe
+*.FileListAbsolute.txt
+*.log
+*.sbr
+*.bsc
+*.aps
+*.res
+*.rsp
+*.tlb
+*.tlh
+*.tli
+
+# ------------------------------------------------------------
+# 7. 操作系统与编辑器临时文件
+# ------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ------------------------------------------------------------
+# 8. 编辑器与 IDE 配置
+# ------------------------------------------------------------
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ------------------------------------------------------------
+# 注意：
+# - cocos2d/external/*/prebuilt/ 下的 .lib/.a/.so 是预编译依赖库，
+#   不在此忽略（通过目录级规则保护，不使用全局 *.lib/*.a 规则）。
+# - cocos2d/build/ 保留（含 iOS/Mac 的 xcodeproj 工程文件）。
+# ------------------------------------------------------------
