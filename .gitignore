@@ -34,6 +34,7 @@ proj.win32/*.aps
 # ------------------------------------------------------------
 # 3. Android 工程编译产物 (proj.android)
 # ------------------------------------------------------------
+.gradle/
 proj.android/.gradle/
 proj.android/local.properties
 proj.android/.idea/
