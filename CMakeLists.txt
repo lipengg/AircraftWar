@@ -29,7 +29,12 @@ set(APP_NAME AircraftWar)
 
 project(${APP_NAME})
 
-set(COCOS2DX_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d)
+# 引擎目录：优先环境变量 COCOS2DX_ROOT（独立安装的引擎根目录），未设置时回退到工程内嵌 cocos2d/
+if(DEFINED ENV{COCOS2DX_ROOT})
+    set(COCOS2DX_ROOT_PATH $ENV{COCOS2DX_ROOT})
+else()
+    set(COCOS2DX_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d)
+endif()
 set(CMAKE_MODULE_PATH ${COCOS2DX_ROOT_PATH}/cmake/Modules/)
 
 include(CocosBuildSet)

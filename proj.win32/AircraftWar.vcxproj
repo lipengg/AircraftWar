@@ -16,6 +16,11 @@
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
+  <!-- 引擎目录：优先环境变量 COCOS2DX_ROOT（独立安装的引擎根目录），未设置时回退到工程内嵌 cocos2d/ -->
+  <PropertyGroup>
+    <EngineDir Condition="'$(COCOS2DX_ROOT)' != '' and Exists('$(COCOS2DX_ROOT)\cocos\2d\cocos2dx.props')">$(COCOS2DX_ROOT)</EngineDir>
+    <EngineDir Condition="'$(EngineDir)' == ''">$(ProjectDir)..\cocos2d</EngineDir>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -45,13 +50,13 @@
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\cocos2d\cocos\2d\cocos2dx.props" />
-    <Import Project="..\cocos2d\cocos\2d\cocos2d_headers.props" />
+    <Import Project="$(EngineDir)\cocos\2d\cocos2dx.props" />
+    <Import Project="$(EngineDir)\cocos\2d\cocos2d_headers.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\cocos2d\cocos\2d\cocos2dx.props" />
-    <Import Project="..\cocos2d\cocos\2d\cocos2d_headers.props" />
+    <Import Project="$(EngineDir)\cocos\2d\cocos2dx.props" />
+    <Import Project="$(EngineDir)\cocos\2d\cocos2d_headers.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -196,7 +201,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ResourceCompile Include="game.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">
+    <ProjectReference Include="$(EngineDir)\cocos\2d\libcocos2d.vcxproj">
       <Project>{98A51BA8-FC3A-415B-AC8F-8C7BD464E93E}</Project>
     </ProjectReference>
   </ItemGroup>

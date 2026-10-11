@@ -19,9 +19,11 @@ android {
                     arguments 'NDK_TOOLCHAIN_VERSION=clang'
                     arguments '-j' + Runtime.runtime.availableProcessors()
 
-                    def module_paths = [project.file("../../cocos2d").absolutePath,
-                                        project.file("../../cocos2d/cocos").absolutePath,
-                                        project.file("../../cocos2d/external").absolutePath]
+                    // 引擎目录：优先环境变量 COCOS2DX_ROOT（独立安装的引擎根目录），未设置时回退到工程内嵌 cocos2d/
+                    def cocosRoot = System.getenv("COCOS2DX_ROOT") ?: project.file("../../cocos2d").absolutePath
+                    def module_paths = [cocosRoot,
+                                        new File(cocosRoot, "cocos").absolutePath,
+                                        new File(cocosRoot, "external").absolutePath]
                     if (OperatingSystem.current().isWindows()) {
                         module_paths = module_paths.collect {it.replaceAll('\\\\', '/')}
                         arguments 'NDK_MODULE_PATH=' + module_paths.join(";")
