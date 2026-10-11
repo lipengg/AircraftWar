@@ -26,6 +26,8 @@ proj.win32/.vs/
 proj.win32/Debug.win32/
 proj.win32/Release.win32/
 proj.win32/*.user
+# 调试工作目录配置是团队共享设置，需要提交
+!proj.win32/AircraftWar.vcxproj.user
 proj.win32/*.suo
 proj.win32/*.VC.db
 proj.win32/*.ipch
